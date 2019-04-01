@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.fei</groupId>
+  <artifactId>OaBoot</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>war</packaging>
+
+  <name>OaBoot</name>
+  <url>http://www.fei.com</url>
+  <description>基于SpringBoot的办公自动化系统</description>
+
+  <!--如果是开源项目，可以添加开源协议-->
+  <licenses>
+    <license>
+      <name>The Apache License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+    </license>
+  </licenses>
+
+  <developers>
+    <developer>
+      <name>fei</name>
+      <email>987654321@qq.com</email>
+      <roles>
+        <role>Owner</role>
+      </roles>
+      <timezone>+8</timezone>
+      <url>http://www.fei.com</url>
+    </developer>
+  </developers>
+
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>1.5.12.RELEASE</version>
+  </parent>
+
+  <properties>
+    <!--基本配置-->
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <encoding>UTF-8</encoding>
+    <java.version>1.8</java.version>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+
+    <mysql.version>5.0.7</mysql.version>
+    <mybatis.boot.version>1.3.1</mybatis.boot.version>
+    <pagehelper.boot.version>1.2.3</pagehelper.boot.version>
+    <mybatis.generator.version>1.3.5</mybatis.generator.version>
+    <lombok.version>1.16.20</lombok.version>
+    <commons-io.version>2.5</commons-io.version>
+    <commons-lang3>3.5</commons-lang3>
+  </properties>
+
+  <dependencies>
+    <!--spring-boot:约定大于配置-->
+
+    <!--web启动器是与SpringMVC相关的依赖-->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+
+    <!--mybatis的依赖包-->
+    <dependency>
+      <groupId>org.mybatis.spring.boot</groupId>
+      <artifactId>mybatis-spring-boot-starter</artifactId>
+      <version>${mybatis.boot.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-jdbc</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>${mysql.version}</version>
+    </dependency>
+
+    <!--mybatis分页插件-->
+    <dependency>
+      <groupId>com.github.pagehelper</groupId>
+      <artifactId>pagehelper-spring-boot-starter</artifactId>
+      <version>${pagehelper.boot.version}</version>
+    </dependency>
+
+    <!--默认情况下,spring-boot不支持jsp-->
+    <!--在spring-boot中支持jsp,需要添加额外依赖包-->
+    <!--jsp支持-->
+    <!-- servlet 依赖. -->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>jstl</artifactId>
+    </dependency>
+    <!-- tomcat 的支持.-->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-tomcat</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.tomcat.embed</groupId>
+      <artifactId>tomcat-embed-jasper</artifactId>
+      <!--对比后发现，通过main启动方式比mvn方式启动,在classpath缺少tomcat-embed-jasper.jar；定位到这里，我们就可以解决这个问题了。
+      解决方法：去掉将pom.xml中tomcat-embed-jasper依赖<scope>provided</scope>，依赖调整如下-->
+      <!--<scope>provided</scope>-->
+    </dependency>
+    <!--jsp支持-->
+
+    <!-- lombok -->
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>${lombok.version}</version>
+    </dependency>
+
+    <!-- Hibernate框架 -->
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-core</artifactId>
+      <version>5.2.10.Final</version>
+    </dependency>
+
+    <!-- Hibernate框架 -->
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-core</artifactId>
+      <version>5.2.10.Final</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.sun.mail</groupId>
+      <artifactId>javax.mail</artifactId>
+      <version>1.5.4</version>
+    </dependency>
+    <dependency>
+      <groupId>javax.mail</groupId>
+      <artifactId>javax.mail-api</artifactId>
+      <version>1.5.6</version>
+    </dependency>
+
+    <!-- FileUpload -->
+    <dependency>
+      <groupId>commons-fileupload</groupId>
+      <artifactId>commons-fileupload</artifactId>
+      <version>1.3.3</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>fastjson</artifactId>
+      <version>1.2.39</version>
+    </dependency>
+
+    <!-- log4j -->
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <version>1.2.16</version>
+    </dependency>
+
+    <!-- POI,支持读写微软Office系列 -->
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi-scratchpad</artifactId>
+      <version>3.16</version>
+    </dependency>
+
+    <!-- Druid数据库连接池 -->
+    <!-- https://mvnrepository.com/artifact/com.alibaba/druid -->
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>druid</artifactId>
+      <version>1.0.9</version>
+    </dependency>
+
+    <!-- commons -->
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>${commons-io.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>${commons-lang3}</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+
+      <!-- mybatis generator 自动生成代码插件 -->
+      <plugin>
+        <groupId>org.mybatis.generator</groupId>
+        <artifactId>mybatis-generator-maven-plugin</artifactId>
+        <version>${mybatis.generator.version}</version>
+        <configuration>
+          <!--指定配置文件的名称。默认值:${basedir}/src/main/resources/generatorConfig.xml-->
+          <configurationFile>${basedir}/src/main/resources/generator/generatorConfig.xml</configurationFile>
+          <!--如果指定了该参数，如果生成的java文件存在已经同名的文件，新生成的文件会覆盖原有的文件。
+          如果没有指定该参数，如果存在同名的文件，MBG会给新生成的代码文件生成一个唯一的名字(例如： MyClass.java.1, MyClass.java.2 等等)。
+          重要: 生成器一定会自动合并或覆盖已经生成的XML文件。默认值:false-->
+          <overwrite>true</overwrite>
+          <!--如果指定该参数，执行过程会输出到控制台-->
+          <verbose>true</verbose>
+        </configuration>
+      </plugin>
+    </plugins>
+    <!--注意:需要添加对xml资源的配置,否则无法识别xml文件-->
+    <resources>
+      <resource>
+        <directory>src/main/java/</directory>
+        <includes>
+          <include>**/*.xml</include>
+        </includes>
+        <filtering>false</filtering>
+      </resource>
+      <resource>
+        <directory>src/main/resources</directory>
+        <includes>
+          <include>**.*</include>
+        </includes>
+      </resource>
+    </resources>
+  </build>
+</project>
